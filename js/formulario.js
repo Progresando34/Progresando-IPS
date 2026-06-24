@@ -91,9 +91,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Función para enviar con EmailJS ---
     async function enviarEmail(data) {
-        emailjs.init("l9TLaPZeMlvSZKp5p");
+        emailjs.init("xAutAm-M1MLuByih8");
 
-        return emailjs.send("service_hjbi18j", "template_43d28mz", {
+        return emailjs.send("service_579ug0o", "template_hl1npbl", {
             nombre: data.nombre,
             documento: data.CC,
             email: data.email,
