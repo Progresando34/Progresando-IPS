@@ -93,13 +93,22 @@ document.addEventListener('DOMContentLoaded', function () {
     async function enviarEmail(data) {
         emailjs.init("xAutAm-M1MLuByih8");
 
+        // Mapeo para mostrar los valores con formato bonito
+        const tiposPqrs = {
+            peticion: "Petición",
+            queja: "Queja",
+            reclamo: "Reclamo",
+            sugerencia: "Sugerencia",
+            felicitacion: "Felicitación"
+        };
+
         return emailjs.send("service_579ug0o", "template_hl1npbl", {
             nombre: data.nombre,
             documento: data.CC,
             email: data.email,
             telefono: data.telefono || "No proporcionado",
             es_pqrs: data.es_pqrs ? "Sí" : "No",
-            tipo_pqrs: data.tipo_pqrs || "No aplica",
+            tipo_pqrs: tiposPqrs[data.tipo_pqrs] || data.tipo_pqrs || "No aplica",
             tipo_usuario: data.tipo_usuario,
             empresa: data.empresa || "No aplica",
             tipo_servicio: data.tipo_servicio,
