@@ -1,46 +1,4 @@
 /* ESTILOS GENERALES */
-/* ESTILOS MEJORADOS PARA EL CHATBOT */
-df-messenger {
-    --df-messenger-bot-message: #4caf50;
-    --df-messenger-button-titlebar-color: #4caf50;
-    --df-messenger-chat-background-color: #d4d4d4;
-    --df-messenger-font-color: white;
-    --df-messenger-send-icon: #4caf50;
-    --df-messenger-user-message: #415241;
-    z-index: 1000;
-}
-
-.custom-chatbot {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
-df-messenger[opened] {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
-    min-width: 370px;
-    /* Hacer el chat más ancho */
-}
-
-/* Estilo para el botón flotante más grande */
-.chatbot-floating-button {
-    width: 64px !important;
-    height: 64px !important;
-    border-radius: 50% !important;
-}
-
-/* Ajustar el tamaño del logo dentro del chat */
-.chatbot-logo {
-    width: 42px !important;
-    height: 42px !important;
-    border-radius: 50% !important;
-    object-fit: cover !important;
-    border: 2px solid white !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-}
-
 
 body {
     margin: 0;
@@ -467,7 +425,6 @@ footer::before {
         display: none;
     }
 }
-
 
 
 

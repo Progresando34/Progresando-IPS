@@ -1,963 +1,922 @@
-       /* ESTILOS GENERALES */
-       /* ESTILOS MEJORADOS PARA EL CHATBOT */
-       df-messenger {
-           --df-messenger-bot-message: #4caf50;
-           --df-messenger-button-titlebar-color: #4caf50;
-           --df-messenger-chat-background-color: #d4d4d4;
-           --df-messenger-font-color: white;
-           --df-messenger-send-icon: #4caf50;
-           --df-messenger-user-message: #415241;
-           z-index: 1000;
-       }
-
-       .custom-chatbot {
-           position: fixed;
-           bottom: 20px;
-           right: 20px;
-           z-index: 1000;
-       }
-
-       df-messenger[opened] {
-           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-           border-radius: 12px;
-           min-width: 370px;
-           /* Hacer el chat más ancho */
-       }
-
-       /* Estilo para el botón flotante más grande */
-       .chatbot-floating-button {
-           width: 64px !important;
-           height: 64px !important;
-           border-radius: 50% !important;
-       }
-
-       /* Ajustar el tamaño del logo dentro del chat */
-       .chatbot-logo {
-           width: 42px !important;
-           height: 42px !important;
-           border-radius: 50% !important;
-           object-fit: cover !important;
-           border: 2px solid white !important;
-           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-       }
-
-       body {
-           margin: 0;
-           padding: 0;
-           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-           background-color: #ffffff;
-       }
-
-       hr {
-           background-color: #639A33;
-       }
-
-       .pequeño-header {
-           background-color: #639A33;
-           color: white;
-           text-align: center;
-           padding: 8px 10px;
-           position: fixed;
-           top: 0;
-           left: 0;
-           width: 100%;
-           z-index: 1001;
-       }
-
-       .pequeño-header p {
-           margin: 0;
-           font-size: 0.9rem;
-           letter-spacing: 0.5px;
-       }
-
-       /* Header FIJADO - SIN SOMBRA INICIAL */
-       header {
-           width: 100%;
-           position: fixed;
-           top: 33px;
-           left: 0;
-           z-index: 1000;
-           background: white;
-           /* Quitamos la sombra inicial */
-           transition: top 0.3s ease, box-shadow 0.3s ease;
-       }
-
-       /* Navegación */
-       nav {
-           display: flex;
-           justify-content: space-between;
-           align-items: center;
-
-           margin: 0 0;
-           padding: 11px 10px;
-           width: 100%;
-       }
-
-       /* Logo */
-       .img-logoIPS {
-           max-height: 70px;
-           margin-left: 50px;
-       }
-
-       /* Menú */
-       nav ul {
-           list-style: none;
-           display: flex;
-           gap: 10px;
-           margin: 0;
-           padding: 0;
-       }
-
-       nav li {
-           position: relative;
-       }
-
-       nav li a {
-           display: block;
-           color: #639A33;
-           padding: 15px 10px;
-           text-decoration: none;
-           font-size: 1rem;
-           font-weight: 500;
-           position: relative;
-           transition: color 0.3s ease;
-       }
-
-       /* Línea debajo animada */
-       nav li a::after {
-           content: "";
-           position: absolute;
-           bottom: 5px;
-           left: 0;
-           width: 0%;
-           height: 2px;
-           background-color: #0A5F36;
-           transition: width 0.3s ease;
-       }
-
-       nav li a:hover::after {
-           width: 100%;
-       }
-
-       nav li a:hover {
-           color: #0A5F36;
-       }
-
-       main {
-           margin-top: 120px;
-       }
-
-       .section-header {
-           text-align: center;
-           margin-bottom: 60px;
-           margin-top: 100px;
-           padding: 0 20px;
-       }
-
-       .section-header h2 {
-           font-size: 2.5rem;
-           color: #0A5F36;
-           margin-bottom: 15px;
-           position: relative;
-           display: inline-block;
-       }
-
-       .section-header h2::after {
-           content: '';
-           position: absolute;
-           bottom: -10px;
-           left: 50%;
-           transform: translateX(-50%);
-           width: 80px;
-           height: 4px;
-           background: linear-gradient(90deg, #0A5F36, #639A33);
-           border-radius: 2px;
-       }
-
-       .section-header p {
-           font-size: 1.2rem;
-           color: #666;
-           max-width: 700px;
-           margin: 0 auto;
-       }
-
-       /* Estilo especial solo para el botón Progresando Web */
-       nav li a.progressando-btn {
-           border: 2px solid #639A33;
-           border-radius: 5px;
-           overflow: hidden;
-           position: relative;
-           z-index: 1;
-           transition: all 0.3s ease;
-       }
-
-       /* Eliminar la línea inferior para el botón Progresando Web */
-       nav li a.progressando-btn::after {
-           display: none !important;
-       }
-
-       /* Efecto de fondo que se desliza de izquierda a derecha */
-       nav li a.progressando-btn::before {
-           content: '';
-           position: absolute;
-           top: 0;
-           left: -100%;
-           width: 100%;
-           height: 100%;
-           background: linear-gradient(90deg, #0A5F36, #639A33);
-           transition: left 0.5s ease;
-           z-index: -1;
-       }
-
-       /* Al hacer hover, el fondo se desplaza de izquierda a derecha */
-       nav li a.progressando-btn:hover::before {
-           left: 0;
-       }
-
-       /* Cambiar color del texto cuando el fondo se mueve */
-       nav li a.progressando-btn:hover {
-           color: white;
-           border-color: #0A5F36;
-       }
-
-       /* CONTENIDO PRINCIPAL - SERVICIOS MEJORADO */
-       .servicios-container {
-           max-width: 1200px;
-           margin: 40px auto;
-           padding: 0 20px;
-       }
-
-       .servicios-grid {
-           display: grid;
-           grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-           gap: 50px;
-           /* Aumenté de 30px a 50px */
-           justify-items: center;
-       }
-
-       .servicio-card {
-           background: white;
-           border-radius: 15px;
-           padding: 30px;
-           text-align: center;
-           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-           transition: all 0.3s ease;
-           position: relative;
-           overflow: hidden;
-           border: 1px solid rgba(99, 154, 51, 0.377);
-           width: 100%;
-           max-width: 320px;
-           /* Reduje ligeramente para más espacio alrededor */
-           display: flex;
-           flex-direction: column;
-           height: auto;
-           margin-bottom: 20px;
-           /* Espacio adicional en la parte inferior */
-       }
-
-       .servicio-card::before {
-           content: '';
-           position: absolute;
-           top: 0;
-           left: 0;
-           width: 100%;
-           height: 5px;
-           background: linear-gradient(90deg, #0A5F36, #639A33);
-           transform: scaleX(0);
-           transform-origin: left;
-           transition: transform 0.3s ease;
-       }
-
-       .servicio-card:hover {
-           transform: translateY(-10px);
-           box-shadow: 0 15px 40px rgba(99, 154, 51, 0.2);
-       }
-
-       .servicio-card:hover::before {
-           transform: scaleX(1);
-       }
-
-       /* Iconos en forma de círculo */
-       .servicio-icon {
-           width: 100px;
-           height: 100px;
-           margin: 0 auto 20px;
-           background: linear-gradient(135deg, #0A5F36, #639A33);
-           border-radius: 50%;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           color: white;
-           font-size: 2.5rem;
-           position: relative;
-           transition: all 0.3s ease;
-       }
-
-       .servicio-card:hover .servicio-icon {
-           transform: rotate(10deg) scale(1.1);
-           box-shadow: 0 5px 15px rgba(10, 95, 54, 0.3);
-       }
-
-       .servicio-icon::after {
-           content: '';
-           position: absolute;
-           width: 120px;
-           height: 120px;
-           border: 2px solid rgba(99, 154, 51, 0.3);
-           border-radius: 50%;
-           animation: pulse 2s infinite;
-       }
-
-       @keyframes pulse {
-           0% {
-               transform: scale(0.8);
-               opacity: 0.7;
-           }
-
-           50% {
-               transform: scale(1);
-               opacity: 0.3;
-           }
-
-           100% {
-               transform: scale(0.8);
-               opacity: 0.7;
-           }
-       }
-
-       .servicio-content {
-           flex-grow: 1;
-           display: flex;
-           flex-direction: column;
-       }
-
-       .servicio-card h3 {
-           font-size: 1.5rem;
-           color: #0A5F36;
-           margin-bottom: 15px;
-       }
-
-       .servicio-card p {
-           color: #666;
-           margin-bottom: 20px;
-           line-height: 1.6;
-           flex-grow: 1;
-       }
-
-       .disponible-sede {
-           font-style: italic;
-           color: #0A5F36;
-           font-weight: 500;
-           margin-top: 15px;
-           border-top: 1px solid #eee;
-           padding-top: 10px;
-           text-align: center;
-       }
-
-       .disponible-sede span {
-           display: block;
-           margin-bottom: 5px;
-       }
-
-       .disponible-sede ul {
-           list-style: none;
-           margin: 5px 0 0;
-           padding: 0;
-       }
-
-       .disponible-sede li {
-           margin: 3px 0;
-           font-size: 0.95rem;
-       }
-
-       footer {
-           background: linear-gradient(135deg, #0A5F36 0%, #1e7a4c 100%);
-           color: white;
-           margin-top: 60px;
-           position: relative;
-           overflow: hidden;
-       }
-
-       footer::before {
-           content: '';
-           position: absolute;
-           top: 0;
-           left: 0;
-           width: 100%;
-           height: 100%;
-           background-size: 120px;
-       }
-
-       .footer-container {
-           max-width: 1200px;
-           margin: 0 auto;
-           padding: 0 20px;
-       }
-
-       .footer-content {
-           display: grid;
-           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-           gap: 40px;
-           padding: 40px 0 40px;
-           position: relative;
-           z-index: 2;
-       }
-
-       .footer-column h3 {
-           font-size: 1.3rem;
-           margin-bottom: 20px;
-           position: relative;
-           padding-bottom: 10px;
-           font-weight: 600;
-       }
-
-       .footer-column h3::after {
-           content: '';
-           position: absolute;
-           bottom: 0;
-           left: 0;
-           width: 40px;
-           height: 3px;
-           background: #4caf50;
-           border-radius: 2px;
-       }
-
-       .footer-logo img {
-           max-width: 180px;
-           margin-bottom: 20px;
-           filter: brightness(0) invert(1);
-       }
-
-       .footer-description {
-           line-height: 1.6;
-           margin-bottom: 25px;
-           opacity: 0.9;
-       }
-
-       .contact-item {
-           display: flex;
-           align-items: center;
-           margin-bottom: 12px;
-       }
-
-       .contact-item i {
-           margin-right: 12px;
-           color: #4caf50;
-           width: 20px;
-           text-align: center;
-       }
-
-       .footer-links {
-           list-style: none;
-       }
-
-       .footer-links li {
-           margin-bottom: 12px;
-       }
-
-       .footer-links a {
-           color: rgba(255, 255, 255, 0.9);
-           text-decoration: none;
-           transition: all 0.3s ease;
-           display: flex;
-           align-items: center;
-       }
-
-       .footer-links a:hover {
-           color: #4caf50;
-           transform: translateX(5px);
-       }
-
-       .footer-links i {
-           margin-right: 8px;
-           font-size: 0.8rem;
-       }
-
-       .footer-sede {
-           margin-bottom: 20px;
-       }
-
-       .footer-sede h4 {
-           font-size: 1rem;
-           margin-bottom: 5px;
-           display: flex;
-           align-items: center;
-       }
-
-       .footer-sede h4 i {
-           margin-right: 8px;
-           color: #4caf50;
-       }
-
-       .footer-sede p {
-           opacity: 0.9;
-           font-size: 0.9rem;
-           padding-left: 26px;
-       }
-
-       .business-hours p {
-           margin-bottom: 8px;
-           font-size: 0.95rem;
-           opacity: 0.9;
-       }
-
-       .business-hours strong {
-           color: #4caf50;
-       }
-
-       .social-media {
-           margin-top: 25px;
-       }
-
-       .social-icons {
-           display: flex;
-           gap: 15px;
-           margin-top: 15px;
-       }
-
-       .social-link {
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           width: 40px;
-           height: 40px;
-           background: rgba(255, 255, 255, 0.1);
-           border-radius: 50%;
-           color: white;
-           text-decoration: none;
-           transition: all 0.3s ease;
-       }
-
-       .social-link:hover {
-           background: #4caf50;
-           transform: translateY(-3px);
-       }
-
-       .footer-bottom {
-           border-top: 1px solid rgba(255, 255, 255, 0.1);
-           padding: 10px 0;
-           position: relative;
-           z-index: 2;
-       }
-
-       .footer-bottom-content {
-           display: flex;
-           justify-content: space-between;
-           align-items: center;
-           flex-wrap: wrap;
-           gap: 20px;
-       }
-
-       .legal-links {
-           display: flex;
-           align-items: center;
-           gap: 15px;
-           flex-wrap: wrap;
-       }
-
-       .legal-links a {
-           color: rgba(255, 255, 255, 0.8);
-           text-decoration: none;
-           font-size: 0.9rem;
-           transition: color 0.3s ease;
-       }
-
-       .legal-links a:hover {
-           color: #4caf50;
-       }
-
-       .legal-links span {
-           opacity: 0.5;
-       }
-
-       /* RESPONSIVE */
-       @media (max-width: 1024px) {
-           .servicios-grid {
-               grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-           }
-       }
-
-       @media (max-width: 900px) {
-           body {
-               padding-top: 110px;
-           }
-
-           nav {
-               padding: 10px 15px;
-               justify-content: flex-start;
-               /* Cambiado para alinear a la izquierda */
-           }
-
-           /* Contenedor para hamburguesa + logo */
-           .logo-hamburger-container {
-               display: flex;
-               align-items: center;
-               gap: 15px;
-               flex: 1;
-           }
-
-           /* Botón hamburguesa */
-           .menu-toggle {
-               display: flex;
-               position: relative;
-               margin: 0;
-           }
-
-           /* Logo al lado de la hamburguesa */
-           .img-logoIPS {
-               max-height: 45px;
-               z-index: 1003;
-               margin-left: 0;
-           }
-
-           nav ul {
-               gap: 8px;
-           }
-
-           nav li a {
-               padding: 10px 8px;
-               font-size: 0.9rem;
-           }
-
-           .servicios-grid {
-               grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-               gap: 20px;
-           }
-
-           .servicio-card {
-               padding: 20px;
-           }
-
-           .servicio-icon {
-               width: 80px;
-               height: 80px;
-               font-size: 2rem;
-           }
-
-           .servicio-icon::after {
-               width: 100px;
-               height: 100px;
-           }
-
-           .footer-content {
-               grid-template-columns: 1fr;
-               gap: 30px;
-               padding: 40px 0 30px;
-           }
-
-           .footer-bottom-content {
-               flex-direction: column;
-               text-align: center;
-           }
-
-           .legal-links {
-               justify-content: center;
-           }
-
-           .social-icons {
-               justify-content: center;
-           }
-       }
-
-       @media (max-width: 650px) {
-           .servicios-grid {
-               grid-template-columns: 1fr;
-           }
-
-           nav {
-               flex-direction: column;
-               padding: 10px;
-           }
-
-           nav ul {
-               justify-content: center;
-               margin-top: 10px;
-               flex-wrap: wrap;
-           }
-
-           .footer-container {
-               padding: 0 15px;
-           }
-
-           .footer-column h3 {
-               font-size: 1.2rem;
-           }
-
-           .legal-links {
-               flex-direction: column;
-               gap: 10px;
-           }
-
-           .legal-links span {
-               display: none;
-           }
-       }
-
-       /* Efecto de sombra cuando se hace scroll */
-       header.scrolled {
-           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-       }
-
-       /* CORRECCIÓN COMPLETA DEL MENÚ HAMBURGUESA */
-       .menu-toggle {
-           display: none;
-           flex-direction: column;
-           justify-content: space-between;
-           width: 30px;
-           height: 24px;
-           background: transparent;
-           border: none;
-           cursor: pointer;
-           padding: 0;
-           z-index: 1002;
-       }
-
-       .menu-toggle span {
-           width: 100%;
-           height: 3px;
-           background-color: #639A33;
-           border-radius: 3px;
-           transition: all 0.3s ease;
-           transform-origin: center;
-       }
-
-       /* Estilos cuando el menú está abierto */
-       .menu-toggle.active span:nth-child(1) {
-           transform: translateY(10px) rotate(45deg);
-       }
-
-       .menu-toggle.active span:nth-child(2) {
-           opacity: 0;
-           transform: translateX(-20px);
-       }
-
-       .menu-toggle.active span:nth-child(3) {
-           transform: translateY(-10px) rotate(-45deg);
-       }
-
-       /* Media Query para dispositivos móviles - CORREGIDO */
-       @media (max-width: 900px) {
-
-           /* HEADER Y NAVEGACIÓN */
-           header {
-               height: auto;
-               padding: 0;
-           }
-
-           nav {
-               display: flex;
-               justify-content: flex-start;
-               /* Cambiado para alinear a la izquierda */
-               align-items: center;
-               padding: 10px 15px;
-               height: 60px;
-               position: relative;
-           }
-
-           /* Contenedor para hamburguesa + logo */
-           .logo-hamburger-container {
-               display: flex;
-               align-items: center;
-               gap: 15px;
-               flex: 1;
-           }
-
-           /* Botón hamburguesa */
-           .menu-toggle {
-               display: flex;
-               position: relative;
-               margin: 0;
-           }
-
-           /* Logo al lado de la hamburguesa */
-           .img-logoIPS {
-               max-height: 45px;
-               z-index: 1003;
-               margin-left: 0;
-           }
-
-           /* Menú lateral que se desliza desde la izquierda */
-           nav ul {
-               position: fixed;
-               top: 0;
-               left: -100%;
-               width: 280px;
-               height: 100vh;
-               background: white;
-               flex-direction: column;
-               justify-content: flex-start;
-               align-items: flex-start;
-               padding: 100px 20px 40px;
-               /* Aumentado padding-top para bajar las opciones */
-               transition: left 0.4s ease;
-               z-index: 1001;
-               box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-               overflow-y: auto;
-               margin: 0;
-           }
-
-           nav ul.active {
-               left: 0;
-           }
-
-           nav li {
-               width: 100%;
-               text-align: left;
-               margin: 0;
-           }
-
-           nav li a {
-               padding: 15px 10px;
-               font-size: 1.1rem;
-               border-bottom: 1px solid #f0f0f0;
-               width: 100%;
-               display: block;
-               box-sizing: border-box;
-               color: #333;
-           }
-
-           nav li a:hover {
-               background-color: #f9f9f9;
-               color: #0A5F36;
-           }
-
-           /* Overlay para fondo oscuro al abrir menú */
-           .overlay-menu {
-               position: fixed;
-               top: 0;
-               left: 0;
-               width: 100%;
-               height: 100vh;
-               background: rgba(0, 0, 0, 0.7);
-               z-index: 1000;
-               opacity: 0;
-               visibility: hidden;
-               transition: all 0.4s ease;
-           }
-
-           .overlay-menu.active {
-               opacity: 1;
-               visibility: visible;
-           }
-
-           /* Ajustar el botón Progresando Web en móviles */
-           nav li a.progressando-btn {
-               margin: 15px 0;
-               text-align: center;
-               width: 100%;
-               background: #0A5F36;
-               color: white !important;
-               border-radius: 5px;
-           }
-
-           nav li a.progressando-btn:hover {
-               background: #639A33;
-               color: white !important;
-           }
-
-           /* Ajustar el contenido principal para el header fijo */
-           main {
-               margin-top: 93px;
-               /* 33px (pequeño-header) + 60px (nav) */
-           }
-
-           /* Pequeño header */
-           .pequeño-header {
-               padding: 5px 10px;
-               font-size: 0.75rem;
-               height: 33px;
-               display: flex;
-               align-items: center;
-               justify-content: center;
-           }
-       }
-
-       /* Ajustes para pantallas muy pequeñas */
-       @media (max-width: 480px) {
-           nav {
-               padding: 8px 10px;
-               height: 55px;
-           }
-
-           .img-logoIPS {
-               max-height: 40px;
-           }
-
-           .logo-hamburger-container {
-               gap: 10px;
-           }
-
-           nav ul {
-               width: 250px;
-               padding: 90px 15px 30px;
-               /* Más padding-top para bajar opciones */
-           }
-
-           main {
-               margin-top: 88px;
-               /* 33px (pequeño-header) + 55px (nav) */
-           }
-       }
-
-       @media (max-width: 900px) {
-
-           /* HEADER Y NAVEGACIÓN */
-           header {
-               height: auto;
-               padding: 0;
-           }
-
-           nav {
-               display: flex;
-               justify-content: flex-start;
-               /* Cambiado para alinear a la izquierda */
-               align-items: center;
-               padding: 10px 15px;
-               height: 60px;
-               position: relative;
-           }
-
-           /* Contenedor para hamburguesa + logo */
-           .logo-hamburger-container {
-               display: flex;
-               align-items: center;
-               gap: 15px;
-               position: absolute;
-               left: 15px;
-               top: 50%;
-               transform: translateY(-50%);
-               z-index: 1003;
-           }
-
-           /* Botón hamburguesa */
-           .menu-toggle {
-               display: flex;
-               position: relative;
-               margin: 0;
-           }
-
-           /* Logo al lado de la hamburguesa */
-           .img-logoIPS {
-               max-height: 45px;
-               margin-left: 0;
-           }
-
-           /* Menú lateral que se desliza desde la izquierda */
-           nav ul {
-               position: fixed;
-               top: 0;
-               left: -100%;
-               width: 280px;
-               height: 100vh;
-               background: white;
-               flex-direction: column;
-               justify-content: flex-start;
-               align-items: flex-start;
-               padding: 100px 20px 40px;
-               transition: left 0.4s ease;
-               z-index: 1001;
-               box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-               overflow-y: auto;
-               margin: 0;
-           }
-       }
+/* ESTILOS GENERALES */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+}
+
+hr {
+    background-color: #639A33;
+}
+
+.pequeño-header {
+    background-color: #639A33;
+    color: white;
+    text-align: center;
+    padding: 8px 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+}
+
+.pequeño-header p {
+    margin: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+/* Header FIJADO - SIN SOMBRA INICIAL */
+header {
+    width: 100%;
+    position: fixed;
+    top: 33px;
+    left: 0;
+    z-index: 1000;
+    background: white;
+    /* Quitamos la sombra inicial */
+    transition: top 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Navegación */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0 0;
+    padding: 11px 10px;
+    width: 100%;
+}
+
+/* Logo */
+.img-logoIPS {
+    max-height: 70px;
+    margin-left: 50px;
+}
+
+/* Menú */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    position: relative;
+}
+
+nav li a {
+    display: block;
+    color: #639A33;
+    padding: 15px 10px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Línea debajo animada */
+nav li a::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #0A5F36;
+    transition: width 0.3s ease;
+}
+
+nav li a:hover::after {
+    width: 100%;
+}
+
+nav li a:hover {
+    color: #0A5F36;
+}
+
+main {
+    margin-top: 120px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+    margin-top: 100px;
+    padding: 0 20px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #0A5F36;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #0A5F36, #639A33);
+    border-radius: 2px;
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Estilo especial solo para el botón Progresando Web */
+nav li a.progressando-btn {
+    border: 2px solid #639A33;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+/* Eliminar la línea inferior para el botón Progresando Web */
+nav li a.progressando-btn::after {
+    display: none !important;
+}
+
+/* Efecto de fondo que se desliza de izquierda a derecha */
+nav li a.progressando-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #0A5F36, #639A33);
+    transition: left 0.5s ease;
+    z-index: -1;
+}
+
+/* Al hacer hover, el fondo se desplaza de izquierda a derecha */
+nav li a.progressando-btn:hover::before {
+    left: 0;
+}
+
+/* Cambiar color del texto cuando el fondo se mueve */
+nav li a.progressando-btn:hover {
+    color: white;
+    border-color: #0A5F36;
+}
+
+/* CONTENIDO PRINCIPAL - SERVICIOS MEJORADO */
+.servicios-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 50px;
+    /* Aumenté de 30px a 50px */
+    justify-items: center;
+}
+
+.servicio-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(99, 154, 51, 0.377);
+    width: 100%;
+    max-width: 320px;
+    /* Reduje ligeramente para más espacio alrededor */
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 20px;
+    /* Espacio adicional en la parte inferior */
+}
+
+.servicio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #0A5F36, #639A33);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.servicio-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(99, 154, 51, 0.2);
+}
+
+.servicio-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Iconos en forma de círculo */
+.servicio-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #0A5F36, #639A33);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.servicio-card:hover .servicio-icon {
+    transform: rotate(10deg) scale(1.1);
+    box-shadow: 0 5px 15px rgba(10, 95, 54, 0.3);
+}
+
+.servicio-icon::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 2px solid rgba(99, 154, 51, 0.3);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+}
+
+.servicio-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.servicio-card h3 {
+    font-size: 1.5rem;
+    color: #0A5F36;
+    margin-bottom: 15px;
+}
+
+.servicio-card p {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.disponible-sede {
+    font-style: italic;
+    color: #0A5F36;
+    font-weight: 500;
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.disponible-sede span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.disponible-sede ul {
+    list-style: none;
+    margin: 5px 0 0;
+    padding: 0;
+}
+
+.disponible-sede li {
+    margin: 3px 0;
+    font-size: 0.95rem;
+}
+
+footer {
+    background: linear-gradient(135deg, #0A5F36 0%, #1e7a4c 100%);
+    color: white;
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 120px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    padding: 40px 0 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-column h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: #4caf50;
+    border-radius: 2px;
+}
+
+.footer-logo img {
+    max-width: 180px;
+    margin-bottom: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.footer-description {
+    line-height: 1.6;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.contact-item i {
+    margin-right: 12px;
+    color: #4caf50;
+    width: 20px;
+    text-align: center;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.footer-links a:hover {
+    color: #4caf50;
+    transform: translateX(5px);
+}
+
+.footer-links i {
+    margin-right: 8px;
+    font-size: 0.8rem;
+}
+
+.footer-sede {
+    margin-bottom: 20px;
+}
+
+.footer-sede h4 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.footer-sede h4 i {
+    margin-right: 8px;
+    color: #4caf50;
+}
+
+.footer-sede p {
+    opacity: 0.9;
+    font-size: 0.9rem;
+    padding-left: 26px;
+}
+
+.business-hours p {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.business-hours strong {
+    color: #4caf50;
+}
+
+.social-media {
+    margin-top: 25px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: #4caf50;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.legal-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.legal-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.legal-links a:hover {
+    color: #4caf50;
+}
+
+.legal-links span {
+    opacity: 0.5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .servicios-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    body {
+        padding-top: 110px;
+    }
+
+    nav {
+        padding: 10px 15px;
+        justify-content: flex-start;
+        /* Cambiado para alinear a la izquierda */
+    }
+
+    /* Contenedor para hamburguesa + logo */
+    .logo-hamburger-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex: 1;
+    }
+
+    /* Botón hamburguesa */
+    .menu-toggle {
+        display: flex;
+        position: relative;
+        margin: 0;
+    }
+
+    /* Logo al lado de la hamburguesa */
+    .img-logoIPS {
+        max-height: 45px;
+        z-index: 1003;
+        margin-left: 0;
+    }
+
+    nav ul {
+        gap: 8px;
+    }
+
+    nav li a {
+        padding: 10px 8px;
+        font-size: 0.9rem;
+    }
+
+    .servicios-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .servicio-card {
+        padding: 20px;
+    }
+
+    .servicio-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+
+    .servicio-icon::after {
+        width: 100px;
+        height: 100px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 40px 0 30px;
+    }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .legal-links {
+        justify-content: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 650px) {
+    .servicios-grid {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    nav ul {
+        justify-content: center;
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+
+    .footer-container {
+        padding: 0 15px;
+    }
+
+    .footer-column h3 {
+        font-size: 1.2rem;
+    }
+
+    .legal-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .legal-links span {
+        display: none;
+    }
+}
+
+/* Efecto de sombra cuando se hace scroll */
+header.scrolled {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* CORRECCIÓN COMPLETA DEL MENÚ HAMBURGUESA */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1002;
+}
+
+.menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background-color: #639A33;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+/* Estilos cuando el menú está abierto */
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Media Query para dispositivos móviles - CORREGIDO */
+@media (max-width: 900px) {
+
+    /* HEADER Y NAVEGACIÓN */
+    header {
+        height: auto;
+        padding: 0;
+    }
+
+    nav {
+        display: flex;
+        justify-content: flex-start;
+        /* Cambiado para alinear a la izquierda */
+        align-items: center;
+        padding: 10px 15px;
+        height: 60px;
+        position: relative;
+    }
+
+    /* Contenedor para hamburguesa + logo */
+    .logo-hamburger-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex: 1;
+    }
+
+    /* Botón hamburguesa */
+    .menu-toggle {
+        display: flex;
+        position: relative;
+        margin: 0;
+    }
+
+    /* Logo al lado de la hamburguesa */
+    .img-logoIPS {
+        max-height: 45px;
+        z-index: 1003;
+        margin-left: 0;
+    }
+
+    /* Menú lateral que se desliza desde la izquierda */
+    nav ul {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 100px 20px 40px;
+        /* Aumentado padding-top para bajar las opciones */
+        transition: left 0.4s ease;
+        z-index: 1001;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        margin: 0;
+    }
+
+    nav ul.active {
+        left: 0;
+    }
+
+    nav li {
+        width: 100%;
+        text-align: left;
+        margin: 0;
+    }
+
+    nav li a {
+        padding: 15px 10px;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #f0f0f0;
+        width: 100%;
+        display: block;
+        box-sizing: border-box;
+        color: #333;
+    }
+
+    nav li a:hover {
+        background-color: #f9f9f9;
+        color: #0A5F36;
+    }
+
+    /* Overlay para fondo oscuro al abrir menú */
+    .overlay-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+    }
+
+    .overlay-menu.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Ajustar el botón Progresando Web en móviles */
+    nav li a.progressando-btn {
+        margin: 15px 0;
+        text-align: center;
+        width: 100%;
+        background: #0A5F36;
+        color: white !important;
+        border-radius: 5px;
+    }
+
+    nav li a.progressando-btn:hover {
+        background: #639A33;
+        color: white !important;
+    }
+
+    /* Ajustar el contenido principal para el header fijo */
+    main {
+        margin-top: 93px;
+        /* 33px (pequeño-header) + 60px (nav) */
+    }
+
+    /* Pequeño header */
+    .pequeño-header {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+        height: 33px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    nav {
+        padding: 8px 10px;
+        height: 55px;
+    }
+
+    .img-logoIPS {
+        max-height: 40px;
+    }
+
+    .logo-hamburger-container {
+        gap: 10px;
+    }
+
+    nav ul {
+        width: 250px;
+        padding: 90px 15px 30px;
+        /* Más padding-top para bajar opciones */
+    }
+
+    main {
+        margin-top: 88px;
+        /* 33px (pequeño-header) + 55px (nav) */
+    }
+}
+
+@media (max-width: 900px) {
+
+    /* HEADER Y NAVEGACIÓN */
+    header {
+        height: auto;
+        padding: 0;
+    }
+
+    nav {
+        display: flex;
+        justify-content: flex-start;
+        /* Cambiado para alinear a la izquierda */
+        align-items: center;
+        padding: 10px 15px;
+        height: 60px;
+        position: relative;
+    }
+
+    /* Contenedor para hamburguesa + logo */
+    .logo-hamburger-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1003;
+    }
+
+    /* Botón hamburguesa */
+    .menu-toggle {
+        display: flex;
+        position: relative;
+        margin: 0;
+    }
+
+    /* Logo al lado de la hamburguesa */
+    .img-logoIPS {
+        max-height: 45px;
+        margin-left: 0;
+    }
+
+    /* Menú lateral que se desliza desde la izquierda */
+    nav ul {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 100px 20px 40px;
+        transition: left 0.4s ease;
+        z-index: 1001;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        margin: 0;
+    }
+}
